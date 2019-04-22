@@ -23,11 +23,8 @@ SECRET_KEY = 'i3k%m-808v3_)^h7975iw4v&fl5chq41^19j@u+b*vx7dvw*q$'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
-<<<<<<< HEAD
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost ', '47.101.68.21','.leoqin.fun']
-=======
-ALLOWED_HOSTS = ['*']
->>>>>>> 3071e6cb571945bf22e312e1965c770ec67238c0
+
 
 # Application definition
 
