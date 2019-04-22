@@ -50,9 +50,9 @@
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav navbar-right">
                             <li class="cl-effect-11"><a href="{% url 'blog:index' %}" data-hover="首页">首页</a></li>
-                            <li class="cl-effect-11"><a href="full-width.html" data-hover="博客">博客</a></li>
-                            <li class="cl-effect-11"><a href="about.html" data-hover="关于">关于</a></li>
-                            <li class="cl-effect-11"><a href="contact.html" data-hover="联系">联系</a></li>
+                            <li class="cl-effect-11"><a href="#" data-hover="博客">博客</a></li>
+                            <li class="cl-effect-11"><a href="#" data-hover="关于">关于</a></li>
+                            <li class="cl-effect-11"><a href="#" data-hover="联系">联系</a></li>
                         </ul>
                     </div><!-- /.navbar-collapse -->
                 </nav>
@@ -113,15 +113,12 @@
 
                 <div class="widget widget-category">
                     <h3 class="widget-title">分类</h3>
-                    {% get_categories as categories %}
+                    {% get_categories as category_list %}
                     <ul>
-                        {% for category in categories %}
+                        {% for category in category_list %}
                             <li>
-                                <a href="{% url 'blog:category' category.pk %}">
-                                    {{ category.name }}
-                                    <span class="post-count">
-                                    （2）
-                                </span>
+                                <a href="{% url 'blog:category' category.pk %}">{{ category.name }}
+                                    <span class="post-count">({{ category.num_posts }})</span>
                                 </a>
                             </li>
                         {% empty %}
@@ -132,33 +129,26 @@
 
                 <div class="widget widget-tag-cloud">
                     <h3 class="widget-title">标签云</h3>
+                    {% get_tags as tag_list %}
                     <ul>
-                        <li>
-                            <a href="#">Django</a>
-                        </li>
-                        <li>
-                            <a href="#">Python</a>
-                        </li>
-                        <li>
-                            <a href="#">Java</a>
-                        </li>
-                        <li>
-                            <a href="#">笔记</a>
-                        </li>
-                        <li>
-                            <a href="#">文档</a>
-                        </li>
+                        {% for tag in tag_list %}
+                            <li>
+                                <a href="{% url 'blog:tag' tag.pk %}">{{ tag.name }}</a>
+                            </li>
+                        {% empty %}
+                            暂无标签！
+                        {% endfor %}
                     </ul>
                 </div>
                 <div class="rss">
-                    <a href=""><span class="ion-social-rss-outline"></span> RSS 订阅</a>
+                    <a href="#"><span class="ion-social-rss-outline"></span> RSS 订阅</a>
                 </div>
 
-{#                <div class="rss">#}
-{##}
-{#                    <a href=""><span></span> 推广</a>#}
-{#                    <img src="{% static 'blog/img/me.png' %}">#}
-{#                </div>#}
+                {#                <div class="rss">#}
+                {##}
+                {#                    <a href=""><span></span> 推广</a>#}
+                {#                    <img src="{% static 'blog/img/me.png' %}">#}
+                {#                </div>#}
             </aside>
         </div>
     </div>
@@ -180,38 +170,38 @@
     <nav>
         <ul>
             <li><a href="blog/index.html">首页</a></li>
-            <li><a href="full-width.html">博客</a></li>
-            <li><a href="about.html">关于</a></li>
-            <li><a href="contact.html">联系</a></li>
+            <li><a href="#">博客</a></li>
+            <li><a href="#">关于</a></li>
+            <li><a href="#">联系</a></li>
         </ul>
     </nav>
 </div>
 <script>
-        layui.config({
-            base: "{% static 'blog/js/' %}"//评论插件存放的目录
-        }).use(['jquery', 'revert'], function () {
-            var $ = layui.$;
-            revert = layui.revert;
-            //初始化
-            revert.initRevert({
-                el: "#perfree",
-                width: "541px",
-                height: "150px",
-                tip: "请输入评论内容",
-                uploadUrl: "http://127.0.0.1:8000",
-                tools: [
-                    'emjoi',  'code'
-                ]
-            });
-            $("#getVal").on("click", function () {
-                //获取结果
-                var result = revert.getRevertVal();
-                console.log(result.val);
-                $(".result-box").append(result.val);
-                //hljs.initHighlighting();
-            });
+    layui.config({
+        base: "{% static 'blog/js/' %}"//评论插件存放的目录
+    }).use(['jquery', 'revert'], function () {
+        var $ = layui.$;
+        revert = layui.revert;
+        //初始化
+        revert.initRevert({
+            el: "#perfree",
+            width: "541px",
+            height: "150px",
+            tip: "请输入评论内容",
+            uploadUrl: "http://127.0.0.1:8000",
+            tools: [
+                'emjoi', 'code'
+            ]
         });
-    </script>
-    <script src="{% static 'blog/js/script.js' %}"></script>
+        $("#getVal").on("click", function () {
+            //获取结果
+            var result = revert.getRevertVal();
+            console.log(result.val);
+            $(".result-box").append(result.val);
+            //hljs.initHighlighting();
+        });
+    });
+</script>
+<script src="{% static 'blog/js/script.js' %}"></script>
 </body>
 </html>
