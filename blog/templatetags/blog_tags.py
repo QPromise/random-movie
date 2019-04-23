@@ -4,7 +4,7 @@ from django.db.models.aggregates import Count
 register = template.Library()
 #最新文章标签
 @register.simple_tag
-def get_recent_posts(num=5):
+def get_recent_posts(num=3):
     return Post.objects.all().order_by('-created_time')[:num]
 
 #归类模板标签

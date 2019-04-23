@@ -2,39 +2,35 @@
 
 {% block main %}
     <article class="post post-{{ post.pk }}">
-        <header class="entry-header">
-            <h1 class="entry-title">{{ post.title }}</h1>
-            <div class="entry-meta">
-                <span class="post-category"><a href="#">{{ post.category.name }}</a></span>
-                <span class="post-date"><a href="#"><time class="entry-date"
-                                                          datetime="{{ post.created_time }}">{{ post.created_time }}</time></a></span>
-                <span class="post-author"><a href="#">{{ post.author }}</a></span>
-                <span class="comments-link"><a href="#">{{post.comment_set.count}}评论</a></span>
-                <span class="views-count"><a href="#">{{post.views}} 阅读</a></span>
-                   <div class="widget-tag-cloud">
-                <ul>
-
+        <div class="infos">
+            <div class="newsview">
+                <h3 class="news_title">{{ post.title }}</h3>
+                <div class="news_author"><span class="au01"><a
+                        href="mailto:815221919@qq.com">{{ post.author }}</a></span><span
+                        class="au02">{{ post.created_time }}</span><span class="au03">共<b><script src="#"></script>
+                    {{ post.views }}</b>人围观</span></div>
+                <div class="tags">
                     {% for tag in post.tags.all %}
-                        <li><a href="{% url 'blog:tag' tag.pk %}"># {{ tag.name }}</a></li>
+                        <a href="{% url 'blog:tag' tag.pk %}">{{ tag.name }}</a>
                     {% endfor %}
-                </ul>
+                </div>
+            <br>
+                <div class="news_infos">
+                    {{ post.body|safe }}
+                    &nbsp;
+                </div>
+                <div class="news_about">
+                    <div class="end-flag">
+                        <b>--EOF--</b>
+                    </div>
+                    <a href="#">最后更新：
+                    <time class="entry-date" datetime="{{ post.modified_time }}">{{ post.modified_time }}
+                    </time>
+                </a></span>
+                </div>
             </div>
-            </div>
-        </header>
-        <div class="entry-content clearfix">
-            <!--为了markdown的使用-->
-            {{ post.body|safe }}
-            <div class="entry-meta">
-                <span class="views-count"><b>--EOF--</b></span>
-                <br>
-                <span class="views-count"><a href="#">最后更新：
-                 <time class="entry-date" datetime="{{ post.modified_time }}">{{ post.modified_time }}
-                 </time></a></span>
-            </div>
-
-
         </div>
-</article>
+    </article>
     <section class="comment-area" id="comment-area">
         <hr>
         <h3>发表评论</h3>
@@ -53,27 +49,17 @@
                         {{ form.email }}
                         {{ form.email.errors }}
                     </div>
-{#                    <div class="col-md-12">#}
-{#                         <div id="perfree" class=""></div>#}
-{#                         <a id="getVal" style="margin-left: 20px;" href="javascript:;">我跟你讲我现在就这样~~~</a>#}
-{#                    </div>#}
-{#                    <!-- 声明容器,存放评论框 -->#}
-{##}
-{#                    <!-- 结果展示 -->#}
-{#                    <div class="result-box" style="width: 566px;margin-top: 20px;"></div>#}
-                             <div class="col-md-12">
-                             <label for="{{ form.text.id_for_label }}">评论：</label>
-                              {{ form.text }}
-                              {{ form.text.errors }}
-                             <button type="submit" class="comment-btn">发表</button>
-                             </div>
+                    <div class="col-md-12">
+                        <label for="{{ form.text.id_for_label }}">评论：</label>
+                        {{ form.text }}
+                        {{ form.text.errors }}
+                        <button type="submit" class="comment-btn">发表</button>
+                    </div>
                 </div>    <!-- row -->
             </form>
         </div>
-
-
         <div class="comment-list-panel">
-            <h3>评论列表，共 <span>{{post.comment_set.count}}</span> 条评论</h3>
+            <h3>评论列表，共 <span>{{ post.comment_set.count }}</span> 条评论</h3>
             <ul class="comment-list list-unstyled">
                 {% for comment in comment_list %}
                     <li class="comment-item">

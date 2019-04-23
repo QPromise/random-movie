@@ -4,25 +4,22 @@ from comments.forms import CommentForm
 import  markdown
 from django.utils.html import strip_tags
 from django.views.generic import ListView,DetailView
+from django.db.models import Q
+
 """
 请使用下方的模板引擎方式。
 def index(request):
     return HttpResponse("欢迎访问我的博客首页！")
 """
 
-"""
-请使用下方真正的首页视图函数
-def index(request):
-    return render(request, 'blog/index.html', context={
-        'title': '我的博客首页',
-        'welcome': '欢迎访问我的博客首页'
-    })
-"""
+
+
+
 class IndexView(ListView):
     model = Post
     template_name = 'blog/index.html'
     context_object_name = 'post_list'
-    paginate_by = 2
+    paginate_by = 3
 
     def get_context_data(self, **kwargs):
         """
@@ -265,3 +262,17 @@ class TagView(IndexView):
     def get_queryset(self):
         tag = get_object_or_404(Tag, pk=self.kwargs.get('pk'))
         return super(TagView, self).get_queryset().filter(tags=tag)
+
+
+def search(request):
+    q = request.GET.get('q')
+    print(q)
+    error_msg = ''
+
+    if not q:
+        error_msg = "请输入关键词"
+        return render(request, 'blog/index.html', {'error_msg': error_msg})
+
+    post_list = Post.objects.filter(Q(title__icontains=q) | Q(body__icontains=q))
+    return render(request, 'blog/index.html', {'error_msg': error_msg,
+                                               'post_list': post_list})
