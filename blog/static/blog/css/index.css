@@ -1,5 +1,5 @@
  @charset "gb2312";
-.picshow { height:300px; width: 100%; overflow: hidden; margin: 20px auto; }
+.picshow { width: 100%; overflow: hidden; margin: 20px auto; }
 .picshow li { width:100%; display: inline-block; float: left; overflow: hidden; position: relative; }
 .picshow li i { overflow: hidden; display: block; height: 400px; }
 .picshow li img { display: block; width: 100%; transition: all .5s; }

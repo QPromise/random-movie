@@ -5,7 +5,7 @@
         <p>{{ error_msg }}</p>
     {% endif %}
     {% for post in post_list %}
-    <li><span class="blogpic"><a href="/"><img src="{% static 'blog/images/b06.jpg' %}"></a></span>
+    <li><span class="blogpic"><a href="/"><img src="{{post.get_img_url}}"></a></span>
         <h3 class="blogtitle"><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h3>
         <br>
         <div class="bloginfo">
@@ -54,15 +54,15 @@
             </div>
         {% endif %}
     </div>
-    <section class="github section">
+
+   <!--<section class="github section">
         <div class="section-inner">
             <h3 class="heading">My GitHub</h3>
             <br>
 
-                <!--//Usage: http://caseyscarborough.com/projects/github-activity/ -->
             <div id="ghfeed" class="ghfeed">
-            </div><!--//ghfeed-->
-
-        </div><!--//secton-inner-->
-    </section><!--//section-->
+            </div>
+        </div>
+    </section>-->
+    <!--//section-->
 {% endblock main %}

@@ -34,19 +34,7 @@
     <script src="{% static 'blog/plugins/github-activity/dist/github-activity-0.1.1.min.js' %}"></script>
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mustache.js/0.7.2/mustache.min.js"></script>
 
-<script>
-window.onload = function ()
-{
-	var oH2 = document.getElementsByTagName("h2")[0];
-	var oUl = document.getElementsByTagName("ul")[0];
-	oH2.onclick = function ()
-	{
-		var style = oUl.style;
-		style.display = style.display == "block" ? "none" : "block";
-		oH2.className = style.display == "block" ? "open" : ""
-	}
-}
-</script>
+
 </head>
 
 <body>
@@ -81,16 +69,14 @@ window.onload = function ()
         </nav>
     </div>
 </header>
+
 <div class="picshow">
     <li><img src="{% static 'blog/images/banner1.png' %}"></li>
-
-
 </div>
 
-
 <article>
+<!--博客正文-->
     <div class="blogs">
-
                 {% block main %}
                 {% endblock main %}
                 {% block toc %}
@@ -101,7 +87,7 @@ window.onload = function ()
             <div class="avatar"><img src="{% static 'blog/images/avatar.png' %}" alt=""></div>
             <p class="abname">leoqin | 秦昌帅</p>
             <p class="abposition">菜鸟程序员</p>
-            <div class="abtext"> 你要变成想象中的样子，这件事，一步都不能让。</div>
+            <div class="abtext"> 一定要喜欢着什么，才会觉得有所依靠。</div>
         </div>
         <div class="search">
             放置我的图标(明天弄emmm)
@@ -113,7 +99,7 @@ window.onload = function ()
             <ul>
                 {% for post in recent_post_list %}
                     <li><b><a href="{{ post.get_absolute_url }}" target="_blank">{{ post.title }}</a></b>
-                        <p><i><img src="{% static 'blog/images/mb07.jpg' %}"></i><a href="{{ post.get_absolute_url }}"
+                        <p><i><img  src="{{post.get_img_url}}"></i><a href="{{ post.get_absolute_url }}"
                                                                                     target="_blank">{{ post.excerpt }}</a>
                         </p>
                     </li>
@@ -180,10 +166,13 @@ window.onload = function ()
    <p class="copyright">&copy 2019<a href="https://github.com/QPromise" title="网页模板">LeoQin的小屋</a>
 </footer>
 
+{# <script type="text/javascript">#}
+{#  GitHubActivity.feed({username: "QPromise", selector: "#ghfeed"});#}
+{# </script>#}
 
-<script>
-    GitHubActivity.feed({username: "QPromise", selector: "#ghfeed"});
+<script src="{% static 'blog/js/nav.js' %}">
 </script>
-<script src="{% static 'blog/js/script.js' %}"></script>
+
+
 </body>
 </html>

@@ -4,6 +4,7 @@ from django.urls import reverse
 from django.utils.six import python_2_unicode_compatible
 import  markdown
 from django.utils.html import strip_tags
+import datetime
 
 # python_2_unicode_compatible 装饰器用于兼容 Python2
 @python_2_unicode_compatible
@@ -51,7 +52,7 @@ class Post(models.Model):
     # 这两个列分别表示文章的创建时间和最后一次修改时间，存储时间的字段用 DateTimeField 类型。
     created_time = models.DateTimeField()
     modified_time = models.DateTimeField()
-
+    image=models.ImageField(upload_to=str('./blog/static/blog/upload_image/{time}'.format(time=str(datetime.date.today().strftime("%Y%m%d")))))
     # 文章摘要，可以没有文章摘要，但默认情况下 CharField 要求我们必须存入数据，否则就会报错。
     # 指定 CharField 的 blank=True 参数值后就可以允许空值了。
     excerpt = models.CharField(max_length=200, blank=True)
@@ -80,13 +81,15 @@ class Post(models.Model):
     # 记得从 django.urls 中导入 reverse 函数
     def get_absolute_url(self):
         return reverse('blog:detail', kwargs={'pk': self.pk})
-
+    def get_img_url(self):
+        s=''
+        s=str(self.image.url)
+        return s[4:]
     def increase_views(self):
         self.views+=1
         #保存扫数据库，update_fields 参数来告诉 Django
         #只更新数据库中 views 字段的值，以提高效率
         self.save(update_fields=['views'])
-
     class Meta():
         ordering=['-created_time']
 
