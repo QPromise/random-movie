@@ -99,7 +99,7 @@
             <ul>
                 {% for post in recent_post_list %}
                     <li><b><a href="{{ post.get_absolute_url }}" target="_blank">{{ post.title }}</a></b>
-                        <p><i><img  src="{{post.image.url}}"></i><a href="{{ post.get_absolute_url }}"
+                        <p><i><img  src="{{post.get_img_url}}"></i><a href="{{ post.get_absolute_url }}"
                                                                                     target="_blank">{{ post.excerpt }}</a>
                         </p>
                     </li>
