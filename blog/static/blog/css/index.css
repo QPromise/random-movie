@@ -282,3 +282,28 @@ h3.blogtitle { line-height: 30px; height: 30px; margin: 10px 0; }
 .end-flag{
     text-align: center;
 }
+.qq-img{
+    height: 30px;
+    width:30px;
+    float:right;
+    margin-left: 50px;
+    margin-top: 3px;
+
+}
+.weixin-img{
+    height:30px;
+    width:30px;
+    float: right;
+    margin-left: 50px;
+    margin-right: 50px;
+
+    margin-top: 4px;
+}
+.github-img{
+    height:40px;
+    width:40px;
+    float: right;
+   margin-right: 0px;
+
+    margin-top: 0px;
+}
