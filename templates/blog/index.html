@@ -17,14 +17,12 @@
             </span>
             <span class="dtime">{{ post.created_time }}</span>
             <span class="viewnum">浏览（{{ post.views }}）</span>
-            <span class="comments"><a href="#">评论({{ post.comment_set.count }})</a></span>
+            <span class="comments"><a href="{{ post.get_absolute_url }}">评论({{ post.comment_set.count }})</a></span>
             <span class="readmore"><a href="{{ post.get_absolute_url }}">阅读原文</a></span></div>
     </li>
         {% empty %}
         <div class="no-post">暂时还没有发布的文章！</div>
     {% endfor %}
-
-
     <div class="pagination-pos">
         {% if is_paginated %}
             <div class="pagination">
