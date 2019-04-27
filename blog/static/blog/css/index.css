@@ -1,6 +1,6 @@
  @charset "gb2312";
-.picshow { width: 100%; overflow: hidden; margin: 20px auto; }
-.picshow li { width: 100%; display: inline-block; float: left; overflow: hidden; position: relative; }
+.picshow { width: 90%; overflow: hidden; margin: 20px auto; }
+.picshow li { height:20%;width: 100%; display: inline-block; float: left; overflow: hidden; position: relative; }
 .picshow li i { overflow: hidden; display: block; height: 400px; }
 .picshow li i { overflow: hidden; display: block; height: 400px; }
 .picshow li img { display: block; width: 100%; transition: all .5s; }
@@ -313,8 +313,8 @@ h3.blogtitle { line-height: 30px; height: 30px; margin: 10px 0; }
 
 #header-search-box {
     position: absolute;
-    right: 38px;
-    top: 8px;
+    right: 10%;
+    top: 1.4%;
 }
 
 .search-form {
