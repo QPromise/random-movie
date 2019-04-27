@@ -89,12 +89,11 @@
             <p class="abposition">菜鸟程序员</p>
             <div class="abtext"> 一定要喜欢着什么，才会觉得有所依靠。</div>
         </div>
-        <div class="search">
-            <span>
-            <div class="weixin-img"><img src="{% static 'blog/images/weixin.png' %}"></div>
-            <div class="qq-img"><img src="{% static 'blog/images/qq.png' %}"></div>
-            <div class="github-img"><img src="{% static 'blog/images/github.png' %}"></div>
-            </span>
+        <div class="myself">
+            <span class="github-img"><a class="nav-link" href="https://github.com/QPromise/" title="Follow me on GitHub"><img src="{% static 'blog/images/github.png' %}"></a></span>
+            <span class="email-img"><a class="nav-link"href="mailto:815221919@qq.com"title="Contact me by email~(*╹▽╹*)"><img src="{% static 'blog/images/email.png' %}"></a></span>
+            <span class="weixin-img"><img src="{% static 'blog/images/weixin.png' %}"></span>
+            <span class="qq-img"><img src="{% static 'blog/images/qq.png' %}"></span>
         </div>
         <div class="paihang">
             <h2 class="hometitle">最新文章</h2>
@@ -116,9 +115,9 @@
             {% get_tags as tag_list %}
             <ul>
                 {% for tag in tag_list %}
-                    <li>
+
                         <a href="{% url 'blog:tag' tag.pk %}">{{ tag.name }}</a>
-                    </li>
+
                 {% empty %}
                     暂无标签！
                 {% endfor %}

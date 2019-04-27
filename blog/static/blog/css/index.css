@@ -1,5 +1,5 @@
  @charset "gb2312";
-.picshow { width: 100%; overflow: hidden; margin: 20px auto; }
+.picshow {  overflow: hidden; margin: 20px auto; }
 .picshow li { width:100%; display: inline-block; float: left; overflow: hidden; position: relative; }
 .picshow li i { overflow: hidden; display: block; height: 400px; }
 .picshow li img { display: block; width: 100%; transition: all .5s; }
@@ -41,9 +41,7 @@ h3.blogtitle { line-height: 30px; height: 30px; margin: 10px 0; }
 .abposition { color: #1abc9c; text-align: center }
 .abtext { padding: 20px 40px; color: #9a9a9a; line-height: 26px }
 .readmore { float: right; }
-/*search*/
-.search { background: #FFF; overflow: hidden; padding: 20px; margin: 20px 0 }
-.input_text { padding-left: 5px; border: 1px solid #ccc; width: 70%; height: 26px; line-height: 26px; background-color: #f2f2f2; float: left; }
+ .input_text { padding-left: 5px; border: 1px solid #ccc; width: 70%; height: 26px; line-height: 26px; background-color: #f2f2f2; float: left; }
 .input_submit { background-color: #333; color: #FFF; float: left; width: 20%; border: none; cursor: pointer; height: 28px; line-height: 28px; }
 /*tags*/
 .cloud { width: 100%; clear: both; overflow: hidden; background: #fff; margin-bottom: 20px }
@@ -155,6 +153,7 @@ h3.blogtitle { line-height: 30px; height: 30px; margin: 10px 0; }
  */
 .comment-area {
     padding: 0 30px 0;
+    width: 700px;
 }
 
 .comment-form {
@@ -279,31 +278,12 @@ h3.blogtitle { line-height: 30px; height: 30px; margin: 10px 0; }
     content: ' ·';
     color: #000;
 }
-.end-flag{
-    text-align: center;
-}
-.qq-img{
-    height: 30px;
-    width:30px;
-    float:right;
-    margin-left: 50px;
-    margin-top: 3px;
+.end-flag{text-align: center;}
 
-}
-.weixin-img{
-    height:30px;
-    width:30px;
-    float: right;
-    margin-left: 50px;
-    margin-right: 50px;
-
-    margin-top: 4px;
-}
-.github-img{
-    height:40px;
-    width:40px;
-    float: right;
-   margin-right: 0px;
-
-    margin-top: 0px;
-}
+.myself {  text-align:center;background: #FFF; overflow: hidden; padding: 20px; margin: 20px 0 }
+.myself span { margin-right: 20px;margin-left: 18px;  }
+.myself span:hover img{ display: block; width: 100%; transition: all .5s;}
+.github-img{height:40px;width:40px;float:left;margin-top: 0px;}
+.email-img{height:40px;width:40px;float:left;margin-top: 6px;}
+.qq-img{height: 30px;width:30px;float:left;margin-top: 3px;}
+.weixin-img{height:30px;width:30px;float:left;margin-top: 4px;}

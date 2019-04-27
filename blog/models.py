@@ -82,7 +82,6 @@ class Post(models.Model):
     def get_absolute_url(self):
         return reverse('blog:detail', kwargs={'pk': self.pk})
     def get_img_url(self):
-        s=''
         s=str(self.image.url)
         return s[4:]
     def increase_views(self):
