@@ -273,18 +273,23 @@ def vote(request):
          post_pk = request.POST.get("pk")
          post = get_object_or_404(Post, pk=post_pk)
     except:
-        post = None
+         post = None
     if 'HTTP_X_FORWARDED_FOR' in request.META:
         ip = request.META['HTTP_X_FORWARDED_FOR']
     else:
         ip = request.META['REMOTE_ADDR']
+    print(ip)
     if Poll.objects.filter(ip=ip, post=post).exists():
-        return HttpResponse("1")
+        print(Poll.objects.filter(ip=ip, post=post).exists())
+        return HttpResponse("1")#ip地址存在不能继续点赞
     else:
-        Poll.objects.create(ip=ip, post=post)
+        poll=Poll.objects.create(ip=ip, post=post)
+        print(poll)
         post.like += 1
         post.save()
-        return HttpResponse("2")
+        poll.save()
+        return HttpResponse("2")#ip地址不存在，点赞人数加1
+
 
 def search(request):
     q = request.GET.get('q')

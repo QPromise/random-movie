@@ -112,7 +112,7 @@ class Post(models.Model):
 
 @python_2_unicode_compatible
 class Poll(models.Model):
-    ip = models.CharField(max_length=100, null=True, blank=True)
+    ip = models.CharField(max_length=100,null=False,blank=True)
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
 
     def __str__(self):
