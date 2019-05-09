@@ -1,10 +1,14 @@
 from django.shortcuts import render, get_object_or_404
-from .models import Post,Category,Tag
+from .models import Post,Category,Tag,Poll
 from comments.forms import CommentForm
 import  markdown
 from django.utils.html import strip_tags
 from django.views.generic import ListView,DetailView
 from django.db.models import Q
+from django.http import HttpResponse
+from django.views.decorators.csrf import csrf_exempt
+
+
 
 """
 请使用下方的模板引擎方式。
@@ -262,6 +266,28 @@ class TagView(IndexView):
     def get_queryset(self):
         tag = get_object_or_404(Tag, pk=self.kwargs.get('pk'))
         return super(TagView, self).get_queryset().filter(tags=tag)
+
+
+def getIP(request):
+        if 'HTTP_X_FORWARDED_FOR' in request.META:
+            return request.META['HTTP_X_FORWARDED_FOR']
+        else:
+            return request.META['REMOTE_ADDR']
+@csrf_exempt
+def vote(request):
+    try:
+         post_pk = request.POST.get("pk")
+         post = get_object_or_404(Post, pk=post_pk)
+    except:
+        post = None
+    ip = getIP(request)
+    if Poll.objects.filter(ip=ip, post=post).exists():
+        return HttpResponse("1")
+    else:
+        Poll.objects.create(ip=ip, post=post)
+        post.like += 1
+        post.save()
+        return HttpResponse("2")
 
 
 def search(request):

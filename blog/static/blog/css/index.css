@@ -379,3 +379,4 @@ h3.blogtitle { line-height: 30px; height: 30px; margin: 10px 0; }
 .email-img{height:40px;width:40px;float:left;margin-top: 6px;}
 .qq-img{height: 30px;width:30px;float:left;margin-top: 3px;}
 .weixin-img{height:30px;width:30px;float:left;margin-top: 4px;}
+.likes{float:right;line-height:32px;background:#ffcccc;padding:3px 8px 3px 8px;box-shadow: 0 1px 5px;}

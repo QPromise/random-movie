@@ -73,7 +73,7 @@ class Post(models.Model):
     author = models.ForeignKey(User,on_delete=models.CASCADE)
     #阅读量
     views = models.PositiveIntegerField(default=0)
-
+    like = models.PositiveIntegerField(default=0)
     def __str__(self):
         return self.title
 
@@ -109,3 +109,11 @@ class Post(models.Model):
 
         # 调用父类的 save 方法将数据保存到数据库中
         super(Post, self).save(*args, **kwargs)
+
+@python_2_unicode_compatible
+class Poll(models.Model):
+    ip = models.CharField(max_length=100, null=True, blank=True)
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return str(self.post)

@@ -14,20 +14,30 @@
                         <a href="{% url 'blog:tag' tag.pk %}">{{ tag.name }}</a>
                     {% endfor %}
                 </div>
-            <br>
+                <br>
                 <div class="news_infos">
                     {{ post.body|safe }}
                     &nbsp;
                 </div>
+
                 <div class="news_about">
                     <div class="end-flag">
                         <b>--EOF--</b>
                     </div>
                     <a href="#">最后更新：
-                    <time class="entry-date" datetime="{{ post.modified_time }}">{{ post.modified_time }}
-                    </time>
-                </a></span>
+                        <time class="entry-date" datetime="{{ post.modified_time }}">{{ post.modified_time }}
+                        </time>
+                    </a>
+
                 </div>
+
+                <div class="like">
+                    <a onclick="like_article({{ post.pk }}, 'like')" href="#">
+                    <span class="likes"><i class="fa fa-heart-o">likes({{ post.like }})</i>
+                    </span>
+                    </a>
+                </div>
+
                 <div class="bdsharebuttonbox">
                     <a href="#" class="bds_more" data-cmd="more"></a>
                     <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
@@ -38,7 +48,8 @@
                     <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
 
                 </div>
-
+<script src=" https://cdn.jsdelivr.net/jquery.cookie/1.4.1/jquery.cookie.min.js ">
+	  </script>
                 <script>window._bd_share_config = {
                     "common": {
                         "bdSnsKey": {},
@@ -50,7 +61,26 @@
                         "bdSize": "32"
                     }, "share": {}
                 };
-                with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=0.js?cdnversion=' + ~(-new Date() / 36e5)];</script>
+                with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=0.js?cdnversion=' + ~(-new Date() / 36e5)];
+
+                function like_article(pk, action) {
+                    $.ajax({
+                        url: "{% url 'blog:vote' %}",
+                        type: "POST",
+                        data: {"pk": pk, "action": action},
+                        success: function (e) {
+                            console.log(e)
+                            if (e == "1") {
+                                alert("不能重复点赞~");
+                            }
+                            else if(e == "2"){
+                                window.location.reload();
+                            }
+                        },
+                    });
+                }
+
+                </script>
 
             </div>
         </div>
@@ -101,8 +131,4 @@
     </section>
 {% endblock main %}
 {% block toc %}
-
-
-
 {% endblock toc %}
-
