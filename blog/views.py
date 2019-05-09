@@ -267,12 +267,6 @@ class TagView(IndexView):
         tag = get_object_or_404(Tag, pk=self.kwargs.get('pk'))
         return super(TagView, self).get_queryset().filter(tags=tag)
 
-
-def getIP(request):
-        if 'HTTP_X_FORWARDED_FOR' in request.META:
-            return request.META['HTTP_X_FORWARDED_FOR']
-        else:
-            return request.META['REMOTE_ADDR']
 @csrf_exempt
 def vote(request):
     try:
@@ -280,7 +274,10 @@ def vote(request):
          post = get_object_or_404(Post, pk=post_pk)
     except:
         post = None
-    ip = getIP(request)
+    if 'HTTP_X_FORWARDED_FOR' in request.META:
+        ip = request.META['HTTP_X_FORWARDED_FOR']
+    else:
+        ip = request.META['REMOTE_ADDR']
     if Poll.objects.filter(ip=ip, post=post).exists():
         return HttpResponse("1")
     else:
@@ -288,7 +285,6 @@ def vote(request):
         post.like += 1
         post.save()
         return HttpResponse("2")
-
 
 def search(request):
     q = request.GET.get('q')
