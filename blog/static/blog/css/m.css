@@ -88,7 +88,7 @@ nav, .litle span { display: none; }
 #mnav { display: block; position: fixed; z-index: 999999; }
 .navicon, .navicon:before, .navicon:after { background: #000 }
 #mnav h2 #mnav h2.open .navicon { background: rgba(1,1,1,0) }/* 使用背景色隐藏中间的线 */
-.picshow li i { overflow: hidden; display: block; height: 100px; }
+.picshow { overflow: hidden; display: block; height: 100px; }
 .picshow .font { display: none }
 .text img { width: 100% }
 .rightbox { width: 100%; }
