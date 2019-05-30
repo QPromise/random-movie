@@ -4,7 +4,7 @@
  @media screen and (min-width: 960px) and (max-width: 1199px) {
 header, .tophead, article { width: 100% }
 nav ul li { padding: 10px 10px; }
-.picshow li i { overflow: hidden; display: block; height: 400px; }
+.picshow li  { overflow: hidden; display: block; height: 400px; }
 .picshow .font { display: none }
 .text img { width: 100% }
 .rightbox { margin-right: 0 }
@@ -19,7 +19,7 @@ header, .tophead, article { width: 100% }
 nav ul li { padding: 10px 5px; }
 .blogs { width: 65% }
 .sidebar { width: 33% }
-.picshow li i { overflow: hidden; display: block; height: 300px; }
+.picshow li  { overflow: hidden; display: block; height: 300px; }
 .picshow .font { display: none }
 .text img { width: 100% }
 .news_infos img { width: 100% }
@@ -41,7 +41,7 @@ nav { display: none; }
 #mnav { display: block; position: fixed; z-index: 999999; }
 .navicon, .navicon:before, .navicon:after { background: #000 }
 #mnav h2 #mnav h2.open .navicon { background: rgba(1,1,1,0) }/* 使用背景色隐藏中间的线 */
-.picshow li i { overflow: hidden; display: block; height: 200px; }
+.picshow li  { overflow: hidden; display: block; height: 200px; }
 .picshow .font, .litle span { display: none }
 .text img { width: 100% }
 .blogs { width: 62% }
